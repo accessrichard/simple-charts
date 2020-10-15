@@ -1,0 +1,59 @@
+charting:
+  charts:
+    - name: "Grocery Sales"
+      type: "PieChart"
+      transformer:
+        name: "SqlGroupByTransformer"
+      sourceName: "h2"
+      query: "select label, value from label_value_time where category = ?"
+      params: ["Grocery Sales"]
+      labels:
+        - id: "test"
+          label: "test"
+          type: "string"
+    - name: "Egg Sales By Time"
+      type: "LineChart"
+      transformer:
+        name: "SqlGroupByTimeTransformer"
+        formatter: "DateTime"
+        pattern: "MM-dd HH"
+      sourceName: "h2"
+      query: "select label, value, date from label_value_time where category = ?"
+      params: ["Egg Sales By Hour"]
+      labels:
+        - id: "test"
+          label: "test"
+          type: "string"
+        - id: "test2"
+          label: "test2"
+          type: "number"
+  sources:
+    - name: "h2"
+      driverClassName: "org.h2.Driver"
+      url: "jdbc:h2:mem:sampledb"
+      username: ""
+      password: ""
+
+spring:
+  jackson:
+    serialization:
+      indent_output: true
+
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    schema: "classpath:schema-h2.sql"
+    data: "classpath:db-h2.sql"
+    initialization-mode: embedded
+    platform: h2
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+# For sampel db consoel:
+# http://localhost:8080/h2-console/
+# set connection to: jdbc:h2:mem:sampledb
+# remove username and password
