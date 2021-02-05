@@ -15,7 +15,6 @@ class ChartRepository constructor(val jdbcTemplate: JdbcTemplate) : IChartReposi
     override fun queryTime(serverOptions: ServerOptions): List<TimeLineChartPoint> =
             this.query(serverOptions, TimeLineChartExtractor())
 
-
     override fun queryLabelValue(serverOptions: ServerOptions): List<LabelValueChartPoint> =
             this.query(serverOptions, LabelValueChartExtractor())
 
@@ -27,5 +26,4 @@ class ChartRepository constructor(val jdbcTemplate: JdbcTemplate) : IChartReposi
 
     private fun queryTest(): Int =
             jdbcTemplate.queryForObject("select 1 + 1", Int::class.java)!!
-
 }

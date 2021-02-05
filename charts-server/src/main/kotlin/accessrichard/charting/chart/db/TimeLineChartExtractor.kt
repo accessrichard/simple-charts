@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.ResultSetExtractor
 import java.sql.ResultSet
 import java.sql.SQLException
 
-
 class TimeLineChartExtractor : ResultSetExtractor<List<TimeLineChartPoint>> {
 
     @Throws(SQLException::class)

@@ -24,7 +24,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Charts from "./charts/Charts";
 import ChartList from "./charts/ChartList";
 
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -131,7 +130,6 @@ const routes = [
   }
 ];
 
-
 function App() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -168,21 +166,17 @@ function App() {
           }}
           open={open}
         >
-
-
           <div className={classes.toolbarIcon}>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Reports
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+              Reports
           </Typography>
             <IconButton onClick={handleDrawerClose}>
               <ChevronLeftIcon />
             </IconButton>
-            
           </div>
           <Divider />
-          
-          <ChartList></ChartList>
 
+          <ChartList></ChartList>
 
         </Drawer>
         <main className={classes.content}>
@@ -212,40 +206,7 @@ function App() {
           </Container>
         </main>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </Router>
-
   );
 }
 

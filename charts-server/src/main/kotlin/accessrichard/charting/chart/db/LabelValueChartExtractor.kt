@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.ResultSetExtractor
 import java.sql.ResultSet
 import java.sql.SQLException
 
-
 class LabelValueChartExtractor : ResultSetExtractor<List<LabelValueChartPoint>> {
 
     @Throws(SQLException::class)

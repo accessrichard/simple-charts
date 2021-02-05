@@ -14,7 +14,6 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource
 import org.springframework.stereotype.Component
 
-
 private val contextHolder: ThreadLocal<String> = ThreadLocal<String>()
 
 fun set(db: String) {
@@ -34,14 +33,14 @@ class RoutingDataSource @Autowired constructor(private val config: ChartDatSourc
     override fun afterPropertiesSet() {
         val target: MutableMap<Any, Any> = hashMapOf()
         val sources = config.sources.filter { !it.driverClassName.isNullOrEmpty() && !it.url.isNullOrEmpty() }
-                                    .map {getDataSources(it)}
-        for (source in sources){
+                .map { getDataSources(it) }
+        for (source in sources) {
             target[source.name] = source.dataSource
         }
 
         setTargetDataSources(target)
         val defaultTarget = sources.first().dataSource
-        if ((defaultTarget as HikariDataSource).jdbcUrl == "jdbc:h2:mem:"){
+        if ((defaultTarget as HikariDataSource).jdbcUrl == "jdbc:h2:mem:") {
             // val initSchema = ClassPathResource("scripts/schema-h2.sql")
             // val initData = ClassPathResource("scripts/data-h2.sql")
             // val databasePopulator = ResourceDatabasePopulator(initSchema, initData)
@@ -52,7 +51,7 @@ class RoutingDataSource @Autowired constructor(private val config: ChartDatSourc
         super.afterPropertiesSet()
     }
 
-    private fun getDataSources(dataSourceProps: DataSourceProps) : DataSourceName {
+    private fun getDataSources(dataSourceProps: DataSourceProps): DataSourceName {
         val dataSourceBuilder = DataSourceBuilder.create()
                 .driverClassName(dataSourceProps.driverClassName)
                 .url(dataSourceProps.url)

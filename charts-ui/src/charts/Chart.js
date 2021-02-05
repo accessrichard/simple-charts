@@ -16,7 +16,6 @@ export default function Chart(props) {
 
     const [error, setError] = useState("");
 
-
     useEffect(() => {
 
         async function fetchData() {
@@ -42,7 +41,7 @@ export default function Chart(props) {
                 columns={data.gchart.cols}
                 width="100%"
                 height="500px"
-              
+
             /></>
     )
 }

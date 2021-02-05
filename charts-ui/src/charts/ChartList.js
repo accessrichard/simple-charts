@@ -6,7 +6,6 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Switch from '@material-ui/core/Switch';
 import api from '../api';
 import {
-    Link,
     useHistory
 } from "react-router-dom";
 import { useParams } from 'react-router-dom';
@@ -16,11 +15,8 @@ export default function ChartList() {
 
     const [charts, setCharts] = useState([]);
     const [checked, setChecked] = useState([]);
-    
     const { chartList } = useParams();
     const history = useHistory();
-
-    
 
     const handleToggle = (value) => () => {
         const currentIndex = checked.indexOf(value);
@@ -38,14 +34,10 @@ export default function ChartList() {
 
 
     useEffect(() => {
-        if (chartList)
-        {
+        if (chartList) {
             const selectedCharts = chartList.split(',');
             setChecked(selectedCharts);
         }
-        
-        
-
 
         api.getCharts().then(resp => {
             setCharts(resp);
